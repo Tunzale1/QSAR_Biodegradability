@@ -1,3 +1,4 @@
+import shap
 import matplotlib.pyplot as plt
 
 def plot_feature_distribution(X, feature_idx, title, filename):
@@ -20,3 +21,15 @@ def plot_feature_importance(indices, importances, filename):
     plt.tight_layout()
     plt.savefig(filename, dpi=300)
     plt.close()    
+
+def plot_shap_summary(shap_values, X, filename):
+    plt.figure()
+    shap.summary_plot(
+        shap_values,
+        X,
+        plot_type="dot",
+        show=False
+    )
+    plt.tight_layout()
+    plt.savefig(filename, dpi=300, bbox_inches="tight")
+    plt.close()

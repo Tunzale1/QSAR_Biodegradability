@@ -4,6 +4,8 @@ from visualization import plot_feature_distribution , plot_feature_importance
 from models import train_logistic_regression , train_svm , train_random_forest , train_gradient_boosting
 from evaluation import evaluate_model , get_feature_importance
 
+from evaluation import compute_shap_values
+from visualization import plot_shap_summary
 
 X, y = load_qsar_data("QSAR_data.mat")
 X_train, X_test, y_train, y_test = split_data(X, y)
@@ -61,3 +63,13 @@ gb_model = train_gradient_boosting(X_train, y_train)
 gb_results = evaluate_model(gb_model, X_test, y_test)
 
 print("Gradient Boosting Results:", gb_results)
+
+shap_values, X_shap = compute_shap_values(
+    rf_model,
+    X_train,
+    X_test
+)
+
+plot_shap_summary(shap_values, X_shap, "shap_summary_rf.png")
+
+print("SHAP summary plot saved.")
