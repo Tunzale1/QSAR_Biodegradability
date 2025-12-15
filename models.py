@@ -1,6 +1,8 @@
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import GradientBoostingClassifier
+
 
 
 def train_logistic_regression(X_train, y_train):
@@ -32,6 +34,16 @@ def train_random_forest(X_train, y_train):
         class_weight="balanced",
         random_state=42,
         n_jobs=-1
+    )
+    model.fit(X_train, y_train)
+    return model
+
+def train_gradient_boosting(X_train, y_train):
+    model = GradientBoostingClassifier(
+        n_estimators=200,
+        learning_rate=0.05,
+        max_depth=3,
+        random_state=42
     )
     model.fit(X_train, y_train)
     return model

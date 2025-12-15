@@ -1,7 +1,7 @@
 # main_run.py
 from data_utils import load_qsar_data, split_data , scale_features
 from visualization import plot_feature_distribution , plot_feature_importance
-from models import train_logistic_regression , train_svm , train_random_forest
+from models import train_logistic_regression , train_svm , train_random_forest , train_gradient_boosting
 from evaluation import evaluate_model , get_feature_importance
 
 
@@ -56,3 +56,8 @@ top_idx, top_imp = get_feature_importance(rf_model, top_n=10)
 plot_feature_importance(top_idx, top_imp, "rf_feature_importance.png")
 
 print("Top 10 important feature indices:", top_idx)
+
+gb_model = train_gradient_boosting(X_train, y_train)
+gb_results = evaluate_model(gb_model, X_test, y_test)
+
+print("Gradient Boosting Results:", gb_results)
