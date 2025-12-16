@@ -1,4 +1,3 @@
-# data_utils.py
 import numpy as np
 from scipy.io import loadmat
 from sklearn.model_selection import train_test_split
@@ -8,9 +7,6 @@ from sklearn.preprocessing import StandardScaler
 def load_qsar_data(mat_path):
     """
     Loads QSAR biodegradability dataset.
-    Returns:
-        X : feature matrix (n_samples, n_features)
-        y : labels (n_samples,)
     """
     data = loadmat(mat_path)
     qsar = data['QSAR_data']
